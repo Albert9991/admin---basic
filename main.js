@@ -25,8 +25,75 @@ document.getElementById('create').addEventListener('click', createCourse);
 const deleteCourse = (id) => {
     courses.child(id).remove()}
 
-
-
+    const plus = (sumNumber) => {
+        const number = document.querySelector('.number').textContent
+        console.log("plus -> sumNumber", sumNumber)
+        const x = +number + 1;
+        const delta = x* sumNumber;
+        document.querySelector('.number').innerText =`${x}`
+        document.querySelector('.sum').innerText =`${delta}`
+    }
+    const minus = (sumNumber) => {
+        const number = document.querySelector('.number').textContent
+        if((+number) > 1){
+        const x = +number - 1;
+        const delta = x* sumNumber;
+        document.querySelector('.sum').innerText =`${delta}`
+        document.querySelector('.number').innerText =`${x}`
+        }
+    }
+    const save = () => {
+    }
+    const addCourse = (id) => {
+        document.querySelector('#general').style.display = 'none';
+        const addModal = document.getElementById('addModal');
+        addModal.innerHTML = `
+        <div class="options">
+             <div id="courseoptions">
+                  <p class="thisCourse">Course</p>
+                   <div class="img"></div>
+                   <p class="thisCourseName"></p>
+                   <p class="thisCourseDescripton"></p>
+                <p class="thiseCoursePrice"></p>
+             </div>
+             <div class="buttons">
+                 <p class="pluseMinuse">pluse and minuse</p>
+                 <button id="plus">Plus(+)</button>
+                 <p class="number">1</p>
+                 <button id="minus">Minus(-)</button>
+             </div>
+             <div id="summa">
+                 <p class="allCourse">Summa</p>
+                 <p class="sum"></p>
+             </div>
+             <div class="end">
+                 <button id="endOptions">Save</button>
+             </div>
+        </div>
+        `;
+        document.querySelector('.img').style.background = `url(${id.courseLogo})`;
+        const thisCourseName = document.querySelector('.thisCourseName').innerHTML = `${id.coursesName}`;
+        const thisCourseDescripton = document.querySelector('.thisCourseDescripton').innerHTML = `${id.courseDescription}`;
+        const thiseCoursePrice = document.querySelector('.thiseCoursePrice').innerHTML = `${id.coursePrice}`;
+        const sum = document.querySelector('.sum').innerHTML = `${id.coursePrice}`
+        const sumx = document.querySelector('.sum').textContent
+        const sumNumber = +sumx;
+        const plusButton = document.querySelector('#plus');
+            plusButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                plus(sumNumber)
+        })
+        const minusButton = document.querySelector('#minus');
+        minusButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            minus(sumNumber)
+        })
+        const saveButton = document.getElementById('endOptions');
+        saveButton.addEventListener('click',(e) => {
+            e.preventDefault();
+            save()
+        })
+    }
 
 const editCourse = (id) =>{
     
@@ -54,13 +121,9 @@ const editCourse = (id) =>{
         courses.child(id).update(newData)
         
         modal.innerHTML = ''
-        modal.style.display = 'none'
         document.querySelector('#general').style.display ='block';
 
     })
-
-    
-
 
     const newData = {
         courseName:byId('courseName'),
@@ -70,7 +133,6 @@ const editCourse = (id) =>{
     }
     courses.child(id).update(newData)
 }
-    
 
     (function () {
         const courseList = document.getElementById('courseList');
@@ -106,6 +168,11 @@ const editCourse = (id) =>{
                 edit.addEventListener('click',(e) =>{
                     e.preventDefault()
                     editCourse(data[0])
+                })
+
+                add.addEventListener('click',(e) =>{
+                    e.preventDefault()
+                    addCourse(data[1])
                 })
             })
         })
