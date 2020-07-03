@@ -1,13 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Notable&family=Roboto+Mono:wght@200&display=swap');
+
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    background:url(https://business-review.eu/wp-content/uploads/2016/02/Innovation-in-Technology.jpg);
+}
+/* -------------------- Modal --------------------- */
 #modal{
+    color: wheat;
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
+}
+#divModal{
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 #modal button{
@@ -15,117 +28,188 @@
     width: 30%;
     height: 50px;
     border-radius: 25px;
+    border: none;
 }
 #modal label{
     font-size: 35px;
 }
 #modal  input {
+    border: none;
     width: 70%;
     height: 65px;
     border-radius: 150px;
     font-size: 30px;
 }
+/* ----------------------- Headers ------------------- */
 header{
     color: whitesmoke;
     width: 100%;
     height: 85px;
-    background-color: black;
+    background-color: rgb(73, 157, 236);
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
 input{
+    width: 180px;
+    height: 25px;
+    border-radius: 15px;
+    border: none;
     color: black;
 }
 #create{
+    width: 100px;
+    height: 25px;
+    border-radius:15px;
+    border: none;
     color: black;
 }
-
-.mainDiv{
-    background-color: rgb(9, 48, 48);
-    width: 50%;
-    height: 30vh;
+/* -------------------courseList---------------------------- */
+#courseList{
     display: flex;
-    justify-content:start
-
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#courseList > div{
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#courseList > div > div {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+}
+#courseList > div > p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 70%;
+}
+#courseList > div > div >button {
+    margin: 3px;
+    width: 50px;
+    height: 30px;
+    border-radius: 50px;
+    border: none;
+}
+#courseList > div > img{
+    width: 300px;
+    height: 200px;
 }
 
 #addModal {
     display: flex;
     justify-content: center;
     width: 100%;
-    height: auto;
-    background-color: rgb(80, 170, 255);
+    height: 100vh;
+    align-items: center;
 }
 
 .options{
     width: 100%;
-    height: 350px;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 5px;
-    background-color: aqua;
+    background-color: rgba(238, 130, 238, 0.623);
+    border-radius: 60px;
 }
 #courseoptions{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 33%;
-    height: 300px;
-    background-color: brown;
+    width: 20%;
+    height: 400px;
     padding: 10px;
 }
-/* p-tags in addModal */
+
+
 .thisCourse{
+
+    font-size: 25px;
+    font-family: 'Notable', sans-serif;
+    color: rgb(0, 0, 0);
 }
 .pluseMinuse{
-}
-.allCourse{
+    font-size: 20px;
+    font-family: 'Notable', sans-serif;
 }
 .thisCourseName{
-}
-.thisCourseDescripton{
+    font-size: 32px;
 }
 .thiseCoursePrice{
+    font-size: 25px;
+    font-family: 'Notable', sans-serif;
 }
 /* ------------ p ---------- */
 .img{
     width: 300px;
-    height: 200px;
+    height: 400px;
     background-color: white;
     padding: 5px;
 }
 .buttons{
     width: 300px;
     height: 300px;
-    background-color: green;
     padding: 5px;
     display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
 }
+
+#plus{
+    border-radius: 4px;
+    width: 100px;
+    height: 25px;
+    font-size: 20px;
+    background-color: rgb(4, 75, 75);
+    border-color:rgb(3, 32, 32)
+}
+
+#minus{
+    border-radius: 4px;
+    width: 100px;
+    height: 25px;
+    font-size: 20px;
+    background-color: rgb(4, 75, 75);
+    border-color:rgb(3, 32, 32)
+}
+
 .number{
     width: 100px;
     height: 100px;
-    background-color: burlywood;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-family: 'Notable', sans-serif;
 }
 #summa{
     width: 300px;
     height: 300px;
-    background-color: yellow;
     padding: 5px;
     display: flex;
     flex-direction: column;
+    font-size: 30px;
+    font-family: 'Notable', sans-serif;
     justify-content: center;
-    align-items: center;
+    color: rgb(0, 0, 0);
 }
 .sum{
-    width: 100px;
-    height: 100px;
-    background-color: burlywood;
+    width: 300px;
+    height: 120px;
+    display: flex;
+    font-size: 30px;
+    font-family: 'Notable', sans-serif
 }
 .end{
     width: 100px;
@@ -133,4 +217,34 @@ input{
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
+}
+
+.finaly{
+    width: 100%;
+    height: 60vh;
+    background-color: rgba(255, 105, 180, 0.705);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 60px;
+}
+.finLog{
+    color: rgb(0, 0, 0);
+    width: 350px;
+    height: 350px;
+}
+
+#endOptions{
+    border-radius: 4px;
+    width: 100px;
+    height: 25px;
+    font-size: 20px;
+    background-color: rgb(4, 75, 75);
+    border-color:rgb(3, 32, 32)
+}
+
+.finaly > h2{
+    font-size: 30px;
+    font-family: 'Notable', sans-serif
+
 }

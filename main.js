@@ -42,8 +42,27 @@ const deleteCourse = (id) => {
         document.querySelector('.number').innerText =`${x}`
         }
     }
-    const save = () => {
+    const save = (id) => {        
+        const name = id.courseName
+        const sum = document.querySelector('.sum').textContent;
+        const number = document.querySelector('.number').textContent;
+        const addModal = document.querySelector('#addModal');
+        addModal.innerHtml = ''
+        addModal.innerHTML = 
+        `<div class="finaly">
+             <div class="finLog"></div>
+             <h2 class="finName"></h2>
+             <h2 class="finPrice"></h2>
+             <h2 class="finSum"></h2>
+          </div>`
+
+          document.querySelector('.finName').textContent = name;
+          document.querySelector('.finLog').style.background = `url(${id.courseLogo}) no-repeat`;
+          document.querySelector('.finPrice').textContent = sum;
+          document.querySelector('.finSum').textContent = number
     }
+
+
     const addCourse = (id) => {
         document.querySelector('#general').style.display = 'none';
         const addModal = document.getElementById('addModal');
@@ -53,17 +72,16 @@ const deleteCourse = (id) => {
                   <p class="thisCourse">Course</p>
                    <div class="img"></div>
                    <p class="thisCourseName"></p>
-                   <p class="thisCourseDescripton"></p>
                 <p class="thiseCoursePrice"></p>
              </div>
              <div class="buttons">
-                 <p class="pluseMinuse">pluse and minuse</p>
-                 <button id="plus">Plus(+)</button>
+                 <p class="pluseMinuse">Quanity</p>
+                 <button id="plus">+</button>
                  <p class="number">1</p>
-                 <button id="minus">Minus(-)</button>
+                 <button id="minus">-</button>
              </div>
              <div id="summa">
-                 <p class="allCourse">Summa</p>
+                 <p class="allCourse">Price</p>
                  <p class="sum"></p>
              </div>
              <div class="end">
@@ -72,8 +90,7 @@ const deleteCourse = (id) => {
         </div>
         `;
         document.querySelector('.img').style.background = `url(${id.courseLogo})`;
-        const thisCourseName = document.querySelector('.thisCourseName').innerHTML = `${id.coursesName}`;
-        const thisCourseDescripton = document.querySelector('.thisCourseDescripton').innerHTML = `${id.courseDescription}`;
+        const thisCourseName = document.querySelector('.thisCourseName').innerHTML = `${id.courseName}`;
         const thiseCoursePrice = document.querySelector('.thiseCoursePrice').innerHTML = `${id.coursePrice}`;
         const sum = document.querySelector('.sum').innerHTML = `${id.coursePrice}`
         const sumx = document.querySelector('.sum').textContent
@@ -91,7 +108,7 @@ const deleteCourse = (id) => {
         const saveButton = document.getElementById('endOptions');
         saveButton.addEventListener('click',(e) => {
             e.preventDefault();
-            save()
+            save(id)
         })
     }
 
@@ -134,46 +151,48 @@ const editCourse = (id) =>{
     courses.child(id).update(newData)
 }
 
-    (function () {
-        const courseList = document.getElementById('courseList');
-        courses.orderByKey().on('value', data => {
-            courseList.innerHTML = '';
-            Object.entries(data.val()).map((data) => {
-                const div = document.createElement('div');
-                const h2 = document.createElement('h2');
-                const p = document.createElement('p');
-                const img = document.createElement('img');
-                const delet = document.createElement('button');
-                const add = document.createElement('button')
-                const edit = document.createElement('button')
-                const span = document.createElement('span');
-                h2.innerHTML = data[1].courseName;
-                p.innerHTML = data[1].courseDescription;
-                img.src = data[1].courseLogo;
-                span.innerHTML = data[1].coursePrice;
-                delet.innerHTML = 'delete';
-                add.innerHTML ='Add'
-                edit.innerHTML = 'Edit'
-                div.appendChild(h2);
-                div.appendChild(p);
-                div.appendChild(span);
-                div.appendChild(img);
-                div.appendChild(delet);
-                div.appendChild(add);
-                div.appendChild(edit);
-                courseList.appendChild(div);
-                delet.addEventListener('click', (e) => {
-                    deleteCourse(data[0])
-                })
-                edit.addEventListener('click',(e) =>{
-                    e.preventDefault()
-                    editCourse(data[0])
-                })
-
-                add.addEventListener('click',(e) =>{
-                    e.preventDefault()
-                    addCourse(data[1])
-                })
+(function () {
+    const courseList = document.getElementById('courseList');
+    courses.orderByKey().on('value', data => {
+        courseList.innerHTML = '';
+        Object.entries(data.val()).map((data) => {
+            const div = document.createElement('div');
+            const div1 = document.createElement('div');
+            const h2 = document.createElement('h2');
+            const p = document.createElement('p');
+            const img = document.createElement('img');
+            const delet = document.createElement('button');
+            const span = document.createElement('span');
+            const add = document.createElement('button');
+            const edit = document.createElement('button');
+            h2.innerHTML = data[1].courseName;
+            p.innerHTML = data[1].courseDescription;
+            img.src = data[1].courseLogo;
+            span.innerHTML = data[1].coursePrice;
+            add.innerHTML = 'Add';
+            edit.innerHTML = 'Edit';
+            delet.innerHTML = 'delete';
+            div.appendChild(h2);
+            div.appendChild(p);
+            div.appendChild(span);
+            div.appendChild(img);
+            div.appendChild(div1);
+            div1.appendChild(delet);
+            div1.appendChild(add);
+            div1.appendChild(edit);
+            courseList.appendChild(div);
+            delet.addEventListener('click', (e) => {
+                e.preventDefault();
+                deleteCourse(data[0])
+            });
+            edit.addEventListener('click', (e) => {
+                e.preventDefault();
+                editCourse(data[0])
+            });
+            add.addEventListener('click', (e) => {
+                e.preventDefault();
+                addCourse(data[1])
             })
         })
-    })()
+    })
+})()
